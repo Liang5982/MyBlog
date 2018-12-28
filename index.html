@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://cdn.bootcss.com/vue-resource/1.5.1/vue-resource.js"></script>
+		
+	</head>
+	<body>
+		<header id="webTitle">
+			<section id="sectionTop1">
+				<div id="topLeft"><img src="images/2.jpg" id="imglogo1"></div>
+				<div id="topMid">
+					<div id="wrap">
+						<input type="text" v-model="t1" id="txt" @keyup="get($event)" @keydown.down="changeDown()" @keyup.up.prevent="changeUp()" />
+						<input type="button" id="button" value="百度一下">
+						<ul id="res">
+							<li v-for="(item, index) in myDate" @click="clickIndex=index,searchLink(index)" 
+							@mouseover="now = index" :class="{active:index==now,'clickBg':index==clickIndex}">
+							{{item}}</li>
+						</ul>
+					</div>
+				</div>
+				<div id="topRight">
+					<label for="username">用户名：</label><input type="text" name="username" id="username" style="margin-bottom: 20px;"/><br>
+					<label for="password">密&nbsp;&nbsp;&nbsp;码：</label><input type="password" name="password" id="password" />
+				</div>
+			</section>
+			<nav>
+				<ul id="topNavUrl">
+					<li>
+						<span>首页</span>
+					</li><li>
+						<span>音乐</span>
+					</li><li>
+						<span>视频</span>
+					</li><li>
+						<span>文章</span>
+					</li><li>
+						<span>讨论区</span>
+					</li>
+				</ul>
+			</nav>
+			<section id="sectionTop2"><img src="images/13.jpg" id="imgSection2"></section>
+		</header>
+		<div class="container">
+			<section id="main">					
+				<article>
+					<header>本站简介</header>
+					<div id="left"><img src="images/3.jpg" id="img1"></div>
+					<div id="right">
+						<ul>
+							<li>Lorem ipsum dolor sit am  Lorem ipsum dolor sit amet, c
+							onsectetur adipisicing elit. Sed eum tempore perspiciatis ad quasi 
+							consequatur necessitatibus praesentium ratione nihil fugit!
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+							Ipsa iste totam quos nam harum esse amet distinctio pariatur 
+							consectetur non.</li>
+							<li>Lorem ipsum dolor sit am  Lorem ipsum dolor sit amet, c
+							onsectetur adipisicing elit. Sed eum tempore perspiciatis ad quasi 
+							consequatur necessitatibus praesentium ratione nihil fugit!
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+							Ipsa iste totam quos nam harum esse amet distinctio pariatur 
+							consectetur non.</li>
+							<li>Lorem ipsum dolor sit am  Lorem ipsum dolor sit amet, c
+							onsectetur adipisicing elit. Sed eum tempore perspiciatis ad quasi 
+							consequatur necessitatibus praesentium ratione nihil fugit!
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+							Ipsa iste totam quos nam harum esse amet distinctio pariatur 
+							consectetur non.</li>
+							<li>Lorem ipsum dolor sit am  Lorem ipsum dolor sit amet, c
+							onsectetur adipisicing elit. Sed eum tempore perspiciatis ad quasi 
+							consequatur necessitatibus praesentium ratione nihil fugit!
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+							Ipsa iste totam quos nam harum esse amet distinctio pariatur 
+							consectetur non.</li>
+							<li>Lorem ipsum dolor sit am  Lorem ipsum dolor sit amet, c
+							onsectetur adipisicing elit. Sed eum tempore perspiciatis ad quasi 
+							consequatur necessitatibus praesentium ratione nihil fugit!
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+							Ipsa iste totam quos nam harum esse amet distinctio pariatur 
+							consectetur non.</li>
+							<li>Lorem ipsum dolor sit am  Lorem ipsum dolor sit amet, c
+							onsectetur adipisicing elit. Sed eum tempore perspiciatis ad quasi 
+							consequatur necessitatibus praesentium ratione nihil fugit!
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+							Ipsa iste totam quos nam harum esse amet distinctio pariatur 
+							consectetur non.</li>
+						</ul>
+					</div>
+				</article>
+			</section>
+			<aside>
+				<nav>
+					<span>最新发布文章</span>
+					<ul>
+						<li>&middot;《全民编程》我在微软生活中所接触的 
+						</li><li>&#203;Eclipse安装SVN插件方式简明介绍
+						</li><li>&#239;使用Eclipse调试Java程序的10个技巧 
+						</li><li>&#241;三步学会Java Socket编程 
+						</li><li>&#255;程序员妻子自述: 那些程序员教给我的
+						</li><li>&#221;我希望在20岁时就知道的26条时间管理 
+						</li><li>&#214;详解Java解析XML的四种方法 
+						</li><li>&#208;Java数组声明、创建、初始化
+						</li>
+					</ul>
+				</nav>
+				<section>
+					<ul>
+						<span>联系方式</span>
+						<li><address>&#174;地址：时钟.</address></li>
+						<li><address>电话：时钟</address></li>
+						<li><address>传真：时钟.</address></li>
+						<li><address>email：时钟.</address></li>
+						<img src="images/10.jpg" id="img1">
+					</ul>
+				</section>
+			</aside>
+			
+		</div>
+		<footer></footer>
+		
+		<script type="text/javascript">
+			var vm = new Vue({
+							el: '#wrap',
+							data: {
+								myDate: [],
+								t1: '',
+								now: -1,
+								clickIndex: -1
+							},
+							methods: {
+								get: function(ev) {
+									if (ev.keyCode == 38 || ev.keyCode == 40) return
+			
+									if (ev.keyCode == 13) {
+										window.open('https://www.baidu.com/s?wd=' + this.t1);
+										this.t1 = ''
+									}
+									this.$http.jsonp("https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su", { //跨域请求数据
+										params: {
+											wd: this.t1
+										},
+										jsonp: 'cb'
+									}).then(function(res) {
+										this.myDate = res.data.s
+									}, function(res) {
+										alert(res.status)
+									});
+									//alert("1");
+								},
+								changeDown: function() {
+									this.now++;
+									if (this.now == this.myDate.length) {
+										this.now = 0;
+									}
+									this.t1 = this.myDate[this.now];
+								},
+								changeUp: function() {
+									this.now--;
+									if (this.now == -2) {
+										this.now = this.myDate.length - 1;
+									}
+									this.t1 = this.myDate[this.now];
+								},
+								searchLink: function(index) { //鼠标点击跳转
+									this.t1 = this.myDate[index]
+									this.now = index
+									window.open('https://www.baidu.com/s?wd=' + this.t1)
+								}
+							}
+						})
+		</script>
+	</body>
+</html>
